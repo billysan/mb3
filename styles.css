@@ -1,0 +1,375 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #77BEF0 0%, #FFCB61 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.exercise-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.exercise-btn {
+    background: white;
+    border: 3px solid transparent;
+    border-radius: 12px;
+    padding: 15px 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.exercise-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.exercise-btn.active {
+    background: #FF894F;
+    color: white;
+    border-color: #EA5B6F;
+}
+
+.exercise-content {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.exercise {
+    display: none;
+}
+
+.exercise.active {
+    display: block;
+}
+
+.exercise-image {
+    text-align: center;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+
+.image-placeholder {
+    background: #f0f0f0;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    padding: 60px 20px;
+    color: #666;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.exercise-info h2 {
+    color: #FF894F;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.exercise-tips {
+    background: #f8f9fa;
+    border-left: 4px solid #77BEF0;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.exercise-tips li {
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+.exercise-protocol {
+    background: #77BEF0;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.exercise-protocol strong {
+    font-size: 1.1rem;
+}
+
+.timer-controls {
+    text-align: center;
+}
+
+.start-btn {
+    background: #EA5B6F;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.start-btn:hover {
+    background: #d14456;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(234, 91, 111, 0.4);
+}
+
+.start-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.timer-display {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.timer-display span {
+    background: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #333;
+    border: 2px solid #e9ecef;
+}
+
+.main-timer {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.timer-countdown-big {
+    font-size: 6rem;
+    font-weight: bold;
+    color: #EA5B6F;
+    margin: 20px 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.exercise-instruction {
+    font-size: 1.4rem;
+    color: #FF894F;
+    font-weight: bold;
+    margin: 15px 0;
+    min-height: 2rem;
+}
+
+.timer-countdown {
+    background: #FFCB61 !important;
+    color: #333 !important;
+    font-size: 1.2rem !important;
+    font-weight: bold !important;
+}
+
+.rest-overlay,
+.completion-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.rest-content,
+.completion-content {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    text-align: center;
+    max-width: 400px;
+    margin: 20px;
+}
+
+.rest-content h3,
+.completion-content h3 {
+    color: #FF894F;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.rest-timer {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #EA5B6F;
+    margin: 20px 0;
+}
+
+.completion-content button {
+    background: #77BEF0;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin: 10px;
+    transition: background 0.3s ease;
+}
+
+.completion-content button:hover {
+    background: #5ca3d6;
+}
+
+#next-exercise-btn {
+    background: #EA5B6F !important;
+}
+
+#next-exercise-btn:hover {
+    background: #d14456 !important;
+}
+
+.next-exercise-text {
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .exercise-selector {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .exercise-btn {
+        padding: 12px 8px;
+        font-size: 0.8rem;
+    }
+
+    .exercise-content {
+        padding: 20px;
+    }
+
+    .exercise-info h2 {
+        font-size: 1.6rem;
+    }
+
+    .timer-display {
+        gap: 10px;
+    }
+
+    .timer-display span {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .timer-countdown-big {
+        font-size: 4rem;
+    }
+    
+    .exercise-instruction {
+        font-size: 1.2rem;
+    }
+
+    .start-btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+
+    .rest-content,
+    .completion-content {
+        padding: 30px 20px;
+        margin: 15px;
+    }
+
+    .rest-timer {
+        font-size: 3rem;
+    }
+    
+    .timer-countdown-big {
+        font-size: 3.5rem;
+    }
+    
+    .exercise-instruction {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .exercise-selector {
+        grid-template-columns: 1fr;
+    }
+
+    .exercise-btn {
+        padding: 15px;
+    }
+
+    .timer-display {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .image-placeholder {
+        padding: 40px 15px;
+        font-size: 1rem;
+    }
+}

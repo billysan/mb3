@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McGill's Big Three - Core Stability Exercises</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>McGill's Big Three</h1>
+            <p>Core stability exercises for spinal health</p>
+        </header>
+
+        <main>
+            <div class="exercise-selector">
+                <button class="exercise-btn active" data-exercise="cat-camel">Cat-Camel</button>
+                <button class="exercise-btn" data-exercise="bird-dog">Bird-Dog</button>
+                <button class="exercise-btn" data-exercise="curl-up">Curl-Up</button>
+                <button class="exercise-btn" data-exercise="side-bridge">Side-Bridge</button>
+            </div>
+
+            <div class="exercise-content">
+                <!-- Cat-Camel Exercise -->
+                <div id="cat-camel" class="exercise active">
+                    <div class="exercise-image">
+                        <div class="image-placeholder">Cat-Camel Image Placeholder</div>
+                    </div>
+                    <div class="exercise-info">
+                        <h2>Cat-Camel</h2>
+                        <ul class="exercise-tips">
+                            <li>Start on hands and knees in neutral spine</li>
+                            <li>Move slowly and controlled through full range</li>
+                            <li>Focus on spinal mobility, not speed</li>
+                        </ul>
+                        <div class="timer-controls">
+                            <button class="start-btn" onclick="startCatCamel()">Start Exercise</button>
+                            <div class="main-timer">
+                                <div class="timer-countdown-big">40s</div>
+                                <div class="exercise-instruction">Get ready to start</div>
+                                <div class="timer-display">
+                                    <span class="current-set">Set: 1/2</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bird-Dog Exercise -->
+                <div id="bird-dog" class="exercise">
+                    <div class="exercise-image">
+                        <div class="image-placeholder">Bird-Dog Image Placeholder</div>
+                    </div>
+                    <div class="exercise-info">
+                        <h2>Bird-Dog</h2>
+                        <ul class="exercise-tips">
+                            <li>Keep hips level and spine neutral</li>
+                            <li>Extend opposite arm and leg simultaneously</li>
+                            <li>Hold steady position for full 10 seconds</li>
+                        </ul>
+                        <div class="timer-controls">
+                            <button class="start-btn" onclick="startBirdDog()">Start Exercise</button>
+                            <div class="main-timer">
+                                <div class="timer-countdown-big">10s</div>
+                                <div class="exercise-instruction">Get ready - Right arm & left leg</div>
+                                <div class="timer-display">
+                                    <span class="current-set">Set: 1/3</span>
+                                    <span class="current-rep">Rep: 0/12</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curl-Up Exercise -->
+                <div id="curl-up" class="exercise">
+                    <div class="exercise-image">
+                        <div class="image-placeholder">Curl-Up Image Placeholder</div>
+                    </div>
+                    <div class="exercise-info">
+                        <h2>Curl-Up</h2>
+                        <ul class="exercise-tips">
+                            <li>Keep one knee bent, other leg straight</li>
+                            <li>Hands under lower back for support</li>
+                            <li>Lift head and shoulders only slightly</li>
+                        </ul>
+                        <div class="timer-controls">
+                            <button class="start-btn" onclick="startCurlUp()">Start Exercise</button>
+                            <div class="main-timer">
+                                <div class="timer-countdown-big">10s</div>
+                                <div class="exercise-instruction">Get ready to hold</div>
+                                <div class="timer-display">
+                                    <span class="current-set">Set: 1/3</span>
+                                    <span class="current-rep">Rep: 0/6</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side-Bridge Exercise -->
+                <div id="side-bridge" class="exercise">
+                    <div class="exercise-image">
+                        <div class="image-placeholder">Side-Bridge Image Placeholder</div>
+                    </div>
+                    <div class="exercise-info">
+                        <h2>Side-Bridge</h2>
+                        <ul class="exercise-tips">
+                            <li>Support on forearm and side of feet</li>
+                            <li>Keep body in straight line from head to feet</li>
+                            <li>Engage core and glutes throughout hold</li>
+                        </ul>
+                        <div class="timer-controls">
+                            <button class="start-btn" onclick="startSideBridge()">Start Exercise</button>
+                            <div class="main-timer">
+                                <div class="timer-countdown-big">10s</div>
+                                <div class="exercise-instruction">Get ready - Right side</div>
+                                <div class="timer-display">
+                                    <span class="current-set">Set: 1/3</span>
+                                    <span class="current-rep">Rep: 0/12</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rest-overlay hidden">
+                <div class="rest-content">
+                    <h3>Rest Period</h3>
+                    <div class="rest-timer">30s</div>
+                    <p>Take a 30-second rest</p>
+                </div>
+            </div>
+
+            <div class="completion-overlay hidden">
+                <div class="completion-content">
+                    <h3>Exercise Complete!</h3>
+                    <p class="next-exercise-text">Great job!</p>
+                    <button id="next-exercise-btn" onclick="nextExercise()">Next Exercise</button>
+                    <button onclick="resetExercise()">Reset</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

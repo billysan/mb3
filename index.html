@@ -16,7 +16,7 @@
         <main>
             <div class="exercise-selector">
                 <button class="exercise-btn active" data-exercise="cat-camel">🐈 Cat-Camel 🐪</button>
-                <button class="exercise-btn" data-exercise="bird-dog">🐦 Bird-Dog 🐕<button>
+                <button class="exercise-btn" data-exercise="bird-dog">🐦 Bird-Dog 🐕</button>
                 <button class="exercise-btn" data-exercise="curl-up">➰ Curl-Up ⬆️</button>
                 <button class="exercise-btn" data-exercise="side-bridge">🫴 Side-Bridge 🌉</button>
             </div>
@@ -34,7 +34,7 @@
                             <li>Focus on spinal mobility, not speed</li>
                         </ul>
                         <div class="timer-controls">
-                            <button class="start-btn" onclick="startCatCamel()">Start Exercise</button>
+                            <button class="play-pause-btn" onclick="toggleCatCamel()" data-state="play">▶ PLAY</button>
                             <div class="main-timer">
                                 <div class="timer-countdown-big">40s</div>
                                 <div class="exercise-instruction">Get ready to start</div>
@@ -58,7 +58,7 @@
                             <li>Hold steady position for full 10 seconds</li>
                         </ul>
                         <div class="timer-controls">
-                            <button class="start-btn" onclick="startBirdDog()">Start Exercise</button>
+                            <button class="play-pause-btn" onclick="toggleBirdDog()" data-state="play">▶ PLAY</button>
                             <div class="main-timer">
                                 <div class="timer-countdown-big">10s</div>
                                 <div class="exercise-instruction">Get ready - Right arm & left leg</div>
@@ -83,7 +83,7 @@
                             <li>Lift head and shoulders only slightly</li>
                         </ul>
                         <div class="timer-controls">
-                            <button class="start-btn" onclick="startCurlUp()">Start Exercise</button>
+                            <button class="play-pause-btn" onclick="toggleCurlUp()" data-state="play">▶ PLAY</button>
                             <div class="main-timer">
                                 <div class="timer-countdown-big">10s</div>
                                 <div class="exercise-instruction">Get ready to hold</div>
@@ -108,7 +108,7 @@
                             <li>Engage core and glutes throughout hold</li>
                         </ul>
                         <div class="timer-controls">
-                            <button class="start-btn" onclick="startSideBridge()">Start Exercise</button>
+                            <button class="play-pause-btn" onclick="toggleSideBridge()" data-state="play">▶ PLAY</button>
                             <div class="main-timer">
                                 <div class="timer-countdown-big">10s</div>
                                 <div class="exercise-instruction">Get ready - Right side</div>

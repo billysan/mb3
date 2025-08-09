@@ -6,6 +6,7 @@ let exerciseState = {
     totalSets: 0,
     repsPerSet: [],
     isRunning: false,
+    isPaused: false,
     timer: null,
     currentSide: 'right',
     timeLeft: 0
@@ -32,6 +33,7 @@ function resetExercise() {
         clearInterval(exerciseState.timer);
     }
     exerciseState.isRunning = false;
+    exerciseState.isPaused = false;
     exerciseState.currentSet = 1;
     exerciseState.currentRep = 0;
     exerciseState.currentSide = 'right';
@@ -39,10 +41,10 @@ function resetExercise() {
     
     const exercise = document.getElementById(currentExercise);
     if (exercise) {
-        const startBtn = exercise.querySelector('.start-btn');
-        if (startBtn) {
-            startBtn.disabled = false;
-            startBtn.textContent = 'Start Exercise';
+        const playBtn = exercise.querySelector('.play-pause-btn');
+        if (playBtn) {
+            playBtn.dataset.state = 'play';
+            playBtn.innerHTML = '▶ PLAY';
         }
     }
     
@@ -107,14 +109,27 @@ function updateInstruction() {
     }
 }
 
+function toggleCatCamel() {
+    const playBtn = document.querySelector('#cat-camel .play-pause-btn');
+    
+    if (!exerciseState.isRunning) {
+        startCatCamel();
+    } else if (exerciseState.isPaused) {
+        resumeExercise();
+    } else {
+        pauseExercise();
+    }
+}
+
 function startCatCamel() {
     exerciseState.totalSets = 2;
     exerciseState.repsPerSet = [1, 1]; // 1 "rep" = 40 seconds
     exerciseState.isRunning = true;
+    exerciseState.isPaused = false;
     
-    const startBtn = document.querySelector('#cat-camel .start-btn');
-    startBtn.disabled = true;
-    startBtn.textContent = 'In Progress...';
+    const playBtn = document.querySelector('#cat-camel .play-pause-btn');
+    playBtn.dataset.state = 'pause';
+    playBtn.innerHTML = '⏸ PAUSE';
     
     performCatCamelSet();
 }
@@ -140,14 +155,27 @@ function performCatCamelSet() {
     }
 }
 
+function toggleBirdDog() {
+    const playBtn = document.querySelector('#bird-dog .play-pause-btn');
+    
+    if (!exerciseState.isRunning) {
+        startBirdDog();
+    } else if (exerciseState.isPaused) {
+        resumeExercise();
+    } else {
+        pauseExercise();
+    }
+}
+
 function startBirdDog() {
     exerciseState.totalSets = 3;
     exerciseState.repsPerSet = [12, 8, 4]; // 6 reps per side = 12 total
     exerciseState.isRunning = true;
+    exerciseState.isPaused = false;
     
-    const startBtn = document.querySelector('#bird-dog .start-btn');
-    startBtn.disabled = true;
-    startBtn.textContent = 'In Progress...';
+    const playBtn = document.querySelector('#bird-dog .play-pause-btn');
+    playBtn.dataset.state = 'pause';
+    playBtn.innerHTML = '⏸ PAUSE';
     
     performBirdDogSet();
 }
@@ -177,14 +205,27 @@ function performBirdDogSet() {
     }
 }
 
+function toggleCurlUp() {
+    const playBtn = document.querySelector('#curl-up .play-pause-btn');
+    
+    if (!exerciseState.isRunning) {
+        startCurlUp();
+    } else if (exerciseState.isPaused) {
+        resumeExercise();
+    } else {
+        pauseExercise();
+    }
+}
+
 function startCurlUp() {
     exerciseState.totalSets = 3;
     exerciseState.repsPerSet = [6, 4, 2];
     exerciseState.isRunning = true;
+    exerciseState.isPaused = false;
     
-    const startBtn = document.querySelector('#curl-up .start-btn');
-    startBtn.disabled = true;
-    startBtn.textContent = 'In Progress...';
+    const playBtn = document.querySelector('#curl-up .play-pause-btn');
+    playBtn.dataset.state = 'pause';
+    playBtn.innerHTML = '⏸ PAUSE';
     
     performCurlUpSet();
 }
@@ -214,14 +255,27 @@ function performCurlUpSet() {
     }
 }
 
+function toggleSideBridge() {
+    const playBtn = document.querySelector('#side-bridge .play-pause-btn');
+    
+    if (!exerciseState.isRunning) {
+        startSideBridge();
+    } else if (exerciseState.isPaused) {
+        resumeExercise();
+    } else {
+        pauseExercise();
+    }
+}
+
 function startSideBridge() {
     exerciseState.totalSets = 3;
     exerciseState.repsPerSet = [12, 8, 4]; // 6 reps per side = 12 total
     exerciseState.isRunning = true;
+    exerciseState.isPaused = false;
     
-    const startBtn = document.querySelector('#side-bridge .start-btn');
-    startBtn.disabled = true;
-    startBtn.textContent = 'In Progress...';
+    const playBtn = document.querySelector('#side-bridge .play-pause-btn');
+    playBtn.dataset.state = 'pause';
+    playBtn.innerHTML = '⏸ PAUSE';
     
     performSideBridgeSet();
 }
@@ -259,18 +313,42 @@ function startCountdown(seconds, callback) {
     updateDisplay(); // Update instruction for current rep
     
     const countdownTimer = setInterval(() => {
-        exerciseState.timeLeft--;
-        timerDisplay.textContent = `${exerciseState.timeLeft}s`;
-        
-        if (exerciseState.timeLeft <= 0) {
-            clearInterval(countdownTimer);
-            exerciseState.timeLeft = 0;
-            updateDisplay();
-            callback();
+        if (!exerciseState.isPaused) {
+            exerciseState.timeLeft--;
+            timerDisplay.textContent = `${exerciseState.timeLeft}s`;
+            
+            if (exerciseState.timeLeft <= 0) {
+                clearInterval(countdownTimer);
+                exerciseState.timeLeft = 0;
+                updateDisplay();
+                callback();
+            }
         }
     }, 1000);
     
     exerciseState.timer = countdownTimer;
+}
+
+function pauseExercise() {
+    exerciseState.isPaused = true;
+    const exercise = document.getElementById(currentExercise);
+    const playBtn = exercise.querySelector('.play-pause-btn');
+    
+    if (playBtn) {
+        playBtn.dataset.state = 'play';
+        playBtn.innerHTML = '▶ PLAY';
+    }
+}
+
+function resumeExercise() {
+    exerciseState.isPaused = false;
+    const exercise = document.getElementById(currentExercise);
+    const playBtn = exercise.querySelector('.play-pause-btn');
+    
+    if (playBtn) {
+        playBtn.dataset.state = 'pause';
+        playBtn.innerHTML = '⏸ PAUSE';
+    }
 }
 
 function showRest(callback) {
@@ -303,8 +381,8 @@ function showTransition(nextExerciseName, callback) {
     let timeLeft = 15;
     
     // Update the content for transition
-    restTitle.textContent = 'Great Job!';
-    restText.textContent = `Moving to ${nextExerciseName}`;
+    restTitle.textContent = 'Great ✅';
+    restText.textContent = `Next: ${nextExerciseName}`;
     restTimer.textContent = `${timeLeft}s`;
     
     restOverlay.classList.remove('hidden');
@@ -405,9 +483,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Make functions globally available
-window.startCatCamel = startCatCamel;
-window.startBirdDog = startBirdDog;
-window.startCurlUp = startCurlUp;
-window.startSideBridge = startSideBridge;
+window.toggleCatCamel = toggleCatCamel;
+window.toggleBirdDog = toggleBirdDog;
+window.toggleCurlUp = toggleCurlUp;
+window.toggleSideBridge = toggleSideBridge;
 window.resetExercise = resetExercise;
 window.nextExercise = nextExercise;

@@ -146,7 +146,7 @@ header p {
     text-align: center;
 }
 
-.start-btn {
+.play-pause-btn {
     background: #EA5B6F;
     color: white;
     border: none;
@@ -161,17 +161,18 @@ header p {
     margin-bottom: 20px;
 }
 
-.start-btn:hover {
+.play-pause-btn:hover {
     background: #d14456;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(234, 91, 111, 0.4);
 }
 
-.start-btn:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
+.play-pause-btn[data-state="pause"] {
+    background: #FF894F;
+}
+
+.play-pause-btn[data-state="pause"]:hover {
+    background: #e67a42;
 }
 
 .timer-display {

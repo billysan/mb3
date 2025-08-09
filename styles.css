@@ -147,7 +147,7 @@ header p {
 }
 
 .play-pause-btn {
-    background: #EA5B6F;
+    background: #008000;
     color: white;
     border: none;
     padding: 15px 40px;
@@ -199,7 +199,7 @@ header p {
 .timer-countdown-big {
     font-size: 6rem;
     font-weight: bold;
-    color: #EA5B6F;
+    color: #008000;
     margin: 15px 0;
     text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
